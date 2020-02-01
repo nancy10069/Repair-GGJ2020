@@ -25,7 +25,7 @@ public class BodyPartBehaviour : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        //AllObjectInSceneInteraction();
+        AllObjectInSceneInteraction();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -33,7 +33,7 @@ public class BodyPartBehaviour : MonoBehaviour
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             var currentinteractionData = interactionBehaviourData[i];
-            for (int j = 0; j < currentinteractionData.interactionActions.Count; i++)
+            for (int j = 0; j < currentinteractionData.interactionActions.Count; j++)
             {
                 if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.Colliding)
                 {
@@ -51,7 +51,7 @@ public class BodyPartBehaviour : MonoBehaviour
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             var currentinteractionData = interactionBehaviourData[i];
-            for (int j = 0; j < currentinteractionData.interactionActions.Count; i++)
+            for (int j = 0; j < currentinteractionData.interactionActions.Count; j++)
             {
                 if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.AllAvailableInScene)
                 {
