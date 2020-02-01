@@ -15,15 +15,13 @@ public class PhysicsInteractionInfo : MonoBehaviour
     }
     [BitMask(typeof(PhysicsInteractionType))]
     public PhysicsInteractionType interactionType;
-    // Start is called before the first frame update
-    void Start()
+
+    public bool MeetType(PhysicsInteractionType itneractionType)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        if ((((int)this.interactionType) & ((int)interactionType)) > 0)
+        {
+            return true;
+        }
+        else return false;
     }
 }

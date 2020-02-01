@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/InteractionBehaviourData")]
-public class InteractionBehaviourData : ScriptableObject
+[System.Serializable]
+public struct InteractionBehaviourData
 {
     [BitMask(typeof(PhysicsInteractionInfo.PhysicsInteractionType))]
     public PhysicsInteractionInfo.PhysicsInteractionType targetType;
