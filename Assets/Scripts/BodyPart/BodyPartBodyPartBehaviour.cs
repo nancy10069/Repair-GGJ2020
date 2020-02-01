@@ -25,7 +25,7 @@ public class BodyPartBehaviour : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        AllObjectInSceneInteraction();
+        //AllObjectInSceneInteraction();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -41,7 +41,7 @@ public class BodyPartBehaviour : MonoBehaviour
                 }
             }
 
-            //CollisionEnter();
+
         }
 
     }
@@ -63,6 +63,8 @@ public class BodyPartBehaviour : MonoBehaviour
 
     protected virtual void RunInteractionFunction(PhysicsInteractionInfo.PhysicsInteractionType targetType, InteractionAction.InteractionActionType actionType, string jsonParams)
     {
+        if (ObjectManager.instance == null)
+            return;
         var allTargetObjects = ObjectManager.instance.typeTargetDict[targetType];
         for (int i = 0; i < allTargetObjects.Count; i++)
         {
