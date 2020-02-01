@@ -15,6 +15,10 @@ public class BodyComp
 
 public class LevelManager : MonoBehaviour
 {
+
+
+
+
     public UnityEngine.UI.Image[] imgs;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
