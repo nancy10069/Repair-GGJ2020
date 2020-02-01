@@ -12,8 +12,10 @@ public class BodyComp
     //    public bool hasTwoLeg=true;
 }
 
+
 public class LevelManager : MonoBehaviour
 {
+    public UnityEngine.UI.Image[] imgs;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
     void Start()
@@ -81,18 +83,22 @@ public class LevelManager : MonoBehaviour
             currBodyParts[i] = Mathf.Clamp(currBodyParts[i], 0, 1);//max three comps?
         }
         BodyComp head = heads[currBodyParts[0]];
-        //   headAnm.Play(head.anmName);
         headspr.sprite = head.sprite;//.sprites[0];
+        imgs[0].sprite = head.sprite;
         BodyComp arm = arms[currBodyParts[1]];
-        //   armAnm.Play(arm.anmName);
+        imgs[1].sprite = arm.sprite;
         int count = 0;
+
         foreach (SpriteRenderer sr in armsprs)
         {
             sr.sprite = arm.sprite;//sprites[count];
             count++;
         }
+
+
         BodyComp leg = legs[currBodyParts[2]];
-        // armAnm.Play(leg.anmName);
+                imgs[2].sprite = leg.sprite;
+
         count = 0;
         foreach (SpriteRenderer sr in legsprs)
         {
@@ -109,6 +115,10 @@ public class LevelManager : MonoBehaviour
     public Animator headAnm;
     public Animator armAnm;
     public Animator legAnm;
+    public ArmBehaviour[] armBehaviours;
+    public LegBehaviour[] legBehaviours;
+
+
     //所有资源
     public List<BodyComp> heads = new List<BodyComp>();
     public List<BodyComp> arms = new List<BodyComp>();
