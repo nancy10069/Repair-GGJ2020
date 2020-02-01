@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SuckInReaction : ObjectReaction
 {
-    Rigidbody2D rigidBody;
+    
     [SerializeField]
     private float suckForceRatio = 20f;
     [SerializeField]
     private float maximumSpeed = 5f;
-    private void Awake()
-    {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
+   
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam)
     {
         if (actionType == InteractionAction.InteractionActionType.SuckToMe)
