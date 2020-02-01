@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 3; j++)
             {
@@ -29,6 +29,9 @@ public class LevelManager : MonoBehaviour
                 bc.anmName = typeName[j] + "Animation";//?列个表
                 bc.sprite =Resources.Load
                     (typeName[j] + i, typeof(Sprite)) as Sprite;
+                if (bc.index==3 && j==1){
+                    bc.anmName="WingAnimation";
+                }
 //                 bc.sprites.Add(Resources.Load
   //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
                /* if (j == 0)
@@ -72,51 +75,66 @@ public class LevelManager : MonoBehaviour
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
         BodyComp arm = arms[currBodyParts[1]];
-        armAnm.Play(arm.anmName);
+//        armAnm.Play(arm.anmName);//所有的anm
+        foreach(GameObject obj in armObjects){
+            foreach(Animator a in obj.transform.GetComponentsInChildren<Animator>()){
+                a.Play(arm.anmName);
+            }
+        }
         BodyComp leg = legs[currBodyParts[2]];
-        legAnm.Play(leg.anmName);
+     //   legAnm.Play(leg.anmName);
+         foreach(GameObject obj in legObjects){
+            foreach(Animator a in obj.transform.GetComponentsInChildren<Animator>()){
+                a.Play(arm.anmName);
+            }
+        }
     }
     void renderCharacter()
     {
         for (int i = 0; i < currBodyParts.Length; i++)
         {
-            currBodyParts[i] = Mathf.Clamp(currBodyParts[i], 0, 1);//max three comps?
+            currBodyParts[i] = Mathf.Clamp(currBodyParts[i], 0, 4);//max three comps?
         }
         BodyComp head = heads[currBodyParts[0]];
         headspr.sprite = head.sprite;//.sprites[0];
         imgs[0].sprite = head.sprite;
         BodyComp arm = arms[currBodyParts[1]];
         imgs[1].sprite = arm.sprite;
-        int count = 0;
-
+    //    int count = 0;
+/*
         foreach (SpriteRenderer sr in armsprs)
         {
             sr.sprite = arm.sprite;//sprites[count];
             count++;
+        } */
+        foreach(GameObject obj in armObjects){
+            obj.SetActive(false);
         }
-
+        armObjects[arm.index].SetActive(true);
 
         BodyComp leg = legs[currBodyParts[2]];
                 imgs[2].sprite = leg.sprite;
-
-        count = 0;
+ foreach(GameObject obj in legObjects){
+            obj.SetActive(false);
+        }
+        legObjects[leg.index].SetActive(true);
+    /*   // count = 0;
         foreach (SpriteRenderer sr in legsprs)
         {
             sr.sprite = leg.sprite;//sprites[count];
-            count++;
-        }
+          //  count++;
+        } */
 
     }
     public SpriteRenderer headspr;
-    public SpriteRenderer[] armsprs;
-    public SpriteRenderer[] legsprs;//leg?
+//    public SpriteRenderer[] armsprs;
+   // public SpriteRenderer[] legsprs;//leg?
 
-
+    public GameObject[] armObjects;
+    public GameObject[]  legObjects;
     public Animator headAnm;
     public Animator armAnm;
     public Animator legAnm;
-    public ArmBehaviour[] armBehaviours;
-    public LegBehaviour[] legBehaviours;
 
 
     //所有资源
