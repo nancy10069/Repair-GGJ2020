@@ -37,7 +37,7 @@ public class BodyPartBehaviour : MonoBehaviour
             {
                 if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.Colliding)
                 {
-                    RunInteractionFunction(currentinteractionData.targetType, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
+                    RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
                 }
             }
 
@@ -66,8 +66,13 @@ public class BodyPartBehaviour : MonoBehaviour
         var allTargetObjects = ObjectManager.instance.typeTargetDict[targetType];
         for (int i = 0; i < allTargetObjects.Count; i++)
         {
-            allTargetObjects[i].GetComponents<ObjectReaction>().ToList().ForEach(p => p.TriggerReaction(this, actionType, jsonParams));
+            RunSingleInteractionFunction(allTargetObjects[i], actionType, jsonParams);
         }
 
+    }
+
+    public virtual void RunSingleInteractionFunction(GameObject targetObject, InteractionAction.InteractionActionType actionType, string jsonParams)
+    {
+        targetObject.GetComponents<ObjectReaction>().ToList().ForEach(p => p.TriggerReaction(this, actionType, jsonParams));
     }
 }
