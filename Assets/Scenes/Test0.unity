@@ -2678,7 +2678,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionBehaviourData:
-  - {fileID: 11400000, guid: a50cc9176823ccf48b865b66103f2395, type: 2}
+  - targetType: 8
+    interactionActions:
+    - targetScope: 0
+      actionType: 1
+      jsonParams: 
 --- !u!114 &1867543573264702964
 MonoBehaviour:
   m_ObjectHideFlags: 0
