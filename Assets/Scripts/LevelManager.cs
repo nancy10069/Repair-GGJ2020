@@ -5,6 +5,7 @@ using UnityEngine;
 public class BodyComp
 {
     public int index;
+    public Sprite sprite;
     public List<Sprite> sprites = new List<Sprite> { };
     public int score;
     public string anmName;
@@ -24,10 +25,13 @@ public class LevelManager : MonoBehaviour
                 BodyComp bc = new BodyComp();
                 bc.index = i;
                 bc.anmName = typeName[j] + "Animation";//?列个表
-                if (j == 0)
+                bc.sprite =Resources.Load
+                    (typeName[j] + i, typeof(Sprite)) as Sprite;
+//                 bc.sprites.Add(Resources.Load
+  //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
+               /* if (j == 0)
                 {
-                    bc.sprites.Add(Resources.Load
-                    (typeName[j] + i, typeof(Sprite)) as Sprite);
+                   
                 }
                 else
                 {
@@ -37,7 +41,7 @@ public class LevelManager : MonoBehaviour
                            (typeName[j] + i + "_" + k, typeof(Sprite)) as Sprite);
 
                     }
-                }
+                } */
                 switch (j)
                 {
                     case 0: heads.Add(bc); break;
@@ -78,13 +82,13 @@ public class LevelManager : MonoBehaviour
         }
         BodyComp head = heads[currBodyParts[0]];
         //   headAnm.Play(head.anmName);
-        headspr.sprite = head.sprites[0];
+        headspr.sprite = head.sprite;//.sprites[0];
         BodyComp arm = arms[currBodyParts[1]];
         //   armAnm.Play(arm.anmName);
         int count = 0;
         foreach (SpriteRenderer sr in armsprs)
         {
-            sr.sprite = arm.sprites[count];
+            sr.sprite = arm.sprite;//sprites[count];
             count++;
         }
         BodyComp leg = legs[currBodyParts[2]];
@@ -92,7 +96,7 @@ public class LevelManager : MonoBehaviour
         count = 0;
         foreach (SpriteRenderer sr in legsprs)
         {
-            sr.sprite = leg.sprites[count];
+            sr.sprite = leg.sprite;//sprites[count];
             count++;
         }
 
