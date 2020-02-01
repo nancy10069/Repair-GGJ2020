@@ -5,9 +5,9 @@ using UnityEngine;
 public class BounceOffReaction : ObjectReaction
 {
     [SerializeField]
-    private float pushOffForceRatio;
+    private float pushOffForceRatio = 10f;
     [SerializeField]
-    private float maximumSpeed;
+    private float maximumSpeed = 5f;
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam)
     {
         if (actionType == InteractionAction.InteractionActionType.BounceOff)

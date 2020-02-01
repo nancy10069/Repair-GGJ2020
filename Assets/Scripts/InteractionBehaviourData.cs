@@ -22,6 +22,7 @@ public struct InteractionAction
     public ApplyTargetScope targetScope;
     public enum InteractionActionType
     {
+        NoPhysicsInteraction = 0,
         BounceOff = 1 << 0,
         SuckToMe = 1 << 1,
         Destroy = 1 << 2
