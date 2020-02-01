@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
 
 
     public UnityEngine.UI.Image[] imgs;
+    public GameObject[] scenes;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,10 @@ public class LevelManager : MonoBehaviour
                     (typeName[j] + i, typeof(Sprite)) as Sprite;
                 if (bc.index==3 && j==1){
                     bc.anmName="WingAnimation";
+                }else if (j==2){
+                    if(bc.index==2||bc.index==1){
+                        bc.anmName="TankAnimation";
+                    }
                 }
 //                 bc.sprites.Add(Resources.Load
   //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
@@ -60,6 +65,13 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+    public GameObject endPage;
+    public void nextLevel(){
+
+        GameManager.instance.nextLevel();
+        Application.LoadLevel("Main");
+        //
+    }
     public int[] currBodyParts = new int[3];
     public void prev(int i)
     {
@@ -73,8 +85,24 @@ public class LevelManager : MonoBehaviour
 
     }
     public Animator chara;
+    public Animator holder;
     public void startRunning()
     {
+
+        scenes[GameManager.instance.level].SetActive(true);
+        holder.Play("Small");
+        StartCoroutine(running());
+    }
+    IEnumerator running(){
+        yield return new WaitForSeconds(0.5f);
+        run();
+    }
+    IEnumerator endding(){
+        yield return new WaitForSeconds(3f);
+        endPage.SetActive(true);
+    }
+    void run(){
+        StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
