@@ -12,5 +12,10 @@ public abstract class ObjectReaction : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
     }
-    public abstract void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam);
+    public abstract void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinous);
+    protected ForceMode2D GetForceMode(bool isCountinuous)
+    {
+        ForceMode2D forceMode = isCountinuous ? ForceMode2D.Force : ForceMode2D.Impulse;
+        return forceMode;
+    }
 }

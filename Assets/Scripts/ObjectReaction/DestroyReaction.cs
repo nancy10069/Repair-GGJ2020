@@ -7,7 +7,7 @@ public class DestroyReaction : ObjectReaction
 
     [SerializeField]
     public GameObject destroyParticleEffect;
-    public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam)
+    public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinous)
     {
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {

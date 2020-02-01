@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class SuckInReaction : ObjectReaction
 {
-    
+
     [SerializeField]
     private float suckForceRatio = 20f;
     [SerializeField]
     private float maximumSpeed = 5f;
-   
-    public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam)
+
+    public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinuous)
     {
         if (actionType == InteractionAction.InteractionActionType.SuckToMe)
         {
-            rigidBody.AddForce((from.transform.position - transform.position).normalized * suckForceRatio, ForceMode2D.Force);
+            rigidBody.AddForce((from.transform.position - transform.position).normalized * suckForceRatio, GetForceMode(isCountinuous));
             rigidBody.velocity = Vector2.ClampMagnitude(rigidBody.velocity, maximumSpeed);
             if (Vector2.SqrMagnitude(transform.position - from.transform.position) <= 1f)
             {

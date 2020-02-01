@@ -39,7 +39,7 @@ public class BodyPartBehaviour : MonoBehaviour
                 {
                     if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.Colliding)
                     {
-                        RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
+                        RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams, false);
                     }
                 }
             }
@@ -59,13 +59,13 @@ public class BodyPartBehaviour : MonoBehaviour
             {
                 if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.AllAvailableInScene)
                 {
-                    RunInteractionFunction(currentinteractionData.targetType, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
+                    RunInteractionFunction(currentinteractionData.targetType, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams, true);
                 }
             }
         }
     }
 
-    protected virtual void RunInteractionFunction(PhysicsInteractionInfo.PhysicsInteractionType targetType, InteractionAction.InteractionActionType actionType, string jsonParams)
+    protected virtual void RunInteractionFunction(PhysicsInteractionInfo.PhysicsInteractionType targetType, InteractionAction.InteractionActionType actionType, string jsonParams, bool isCountinuous)
     {
         if (ObjectManager.instance == null)
             return;
@@ -73,13 +73,13 @@ public class BodyPartBehaviour : MonoBehaviour
         for (int i = 0; i < allTargetObjects.Count; i++)
         {
             if (allTargetObjects[i] != null)
-                RunSingleInteractionFunction(allTargetObjects[i], actionType, jsonParams);
+                RunSingleInteractionFunction(allTargetObjects[i], actionType, jsonParams, isCountinuous);
         }
 
     }
 
-    public virtual void RunSingleInteractionFunction(GameObject targetObject, InteractionAction.InteractionActionType actionType, string jsonParams)
+    public virtual void RunSingleInteractionFunction(GameObject targetObject, InteractionAction.InteractionActionType actionType, string jsonParams, bool isCountinuous)
     {
-        targetObject.GetComponents<ObjectReaction>().ToList().ForEach(p => p.TriggerReaction(this, actionType, jsonParams));
+        targetObject.GetComponents<ObjectReaction>().ToList().ForEach(p => p.TriggerReaction(this, actionType, jsonParams, isCountinuous));
     }
 }
