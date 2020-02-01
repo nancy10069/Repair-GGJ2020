@@ -8,11 +8,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     // Start is called before the first frame update
     void Awake(){
+        if (GameManager.instance!=null){
+
+        DestroyImmediate(this.gameObject);return;
+        }
         instance=this;
+
     }
     void Start()
     {
-        
+        DontDestroyOnLoad(this.gameObject);
     }
     public void nextLevel(){level++;
     renderLevel();
