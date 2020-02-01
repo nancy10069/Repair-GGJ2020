@@ -10,10 +10,6 @@ public class BodyPartBehaviour : MonoBehaviour
     public List<InteractionBehaviourData> interactionBehaviourData;
     PhysicsInteractionInfo physicsInfo;
 
-    public virtual void CollisionEnter(PhysicsInteractionInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
     private void Awake()
     {
         physicsInfo = GetComponent<PhysicsInteractionInfo>();
@@ -65,7 +61,7 @@ public class BodyPartBehaviour : MonoBehaviour
         }
     }
 
-    protected void RunInteractionFunction(PhysicsInteractionInfo.PhysicsInteractionType targetType, InteractionAction.InteractionActionType actionType, string jsonParams)
+    protected virtual void RunInteractionFunction(PhysicsInteractionInfo.PhysicsInteractionType targetType, InteractionAction.InteractionActionType actionType, string jsonParams)
     {
         var allTargetObjects = ObjectManager.instance.typeTargetDict[targetType];
         for (int i = 0; i < allTargetObjects.Count; i++)
