@@ -33,11 +33,14 @@ public class BodyPartBehaviour : MonoBehaviour
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             var currentinteractionData = interactionBehaviourData[i];
-            for (int j = 0; j < currentinteractionData.interactionActions.Count; j++)
+            if (physicsInfo.MeetType(currentinteractionData.targetType))
             {
-                if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.Colliding)
+                for (int j = 0; j < currentinteractionData.interactionActions.Count; j++)
                 {
-                    RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
+                    if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.Colliding)
+                    {
+                        RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams);
+                    }
                 }
             }
 
@@ -51,6 +54,7 @@ public class BodyPartBehaviour : MonoBehaviour
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             var currentinteractionData = interactionBehaviourData[i];
+
             for (int j = 0; j < currentinteractionData.interactionActions.Count; j++)
             {
                 if (currentinteractionData.interactionActions[j].targetScope == InteractionAction.ApplyTargetScope.AllAvailableInScene)
@@ -65,7 +69,7 @@ public class BodyPartBehaviour : MonoBehaviour
     {
         if (ObjectManager.instance == null)
             return;
-        var allTargetObjects = ObjectManager.instance.typeTargetDict[targetType];
+        var allTargetObjects = ObjectManager.instance.GetAllObjectsMeetsType(targetType);
         for (int i = 0; i < allTargetObjects.Count; i++)
         {
             if (allTargetObjects[i] != null)

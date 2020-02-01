@@ -24,4 +24,5 @@ public class PhysicsInteractionInfo : MonoBehaviour
         }
         else return false;
     }
+
 }

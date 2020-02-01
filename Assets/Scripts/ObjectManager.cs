@@ -26,6 +26,19 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    public List<GameObject> GetAllObjectsMeetsType(PhysicsInteractionInfo.PhysicsInteractionType targetType)
+    {
+        var ans = new List<GameObject>();
+        foreach (PhysicsInteractionInfo.PhysicsInteractionType type in Enum.GetValues(typeof(PhysicsInteractionInfo.PhysicsInteractionType)))
+        {
+            if (((int)type & (int)targetType) > 0)
+            {
+                ans.AddRange(typeTargetDict[type]);
+            }
+        }
+        return ans;
+    }
+
 
 
     // Start is called before the first frame update
