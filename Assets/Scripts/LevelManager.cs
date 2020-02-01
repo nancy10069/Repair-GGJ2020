@@ -89,7 +89,7 @@ public class LevelManager : MonoBehaviour
      //   legAnm.Play(leg.anmName);
          foreach(GameObject obj in legObjects){
             foreach(Animator a in obj.transform.GetComponentsInChildren<Animator>()){
-                a.Play(arm.anmName);
+                a.Play(leg.anmName);
             }
         }
     }
