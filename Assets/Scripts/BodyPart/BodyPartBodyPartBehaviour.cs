@@ -66,7 +66,8 @@ public class BodyPartBehaviour : MonoBehaviour
         var allTargetObjects = ObjectManager.instance.typeTargetDict[targetType];
         for (int i = 0; i < allTargetObjects.Count; i++)
         {
-            RunSingleInteractionFunction(allTargetObjects[i], actionType, jsonParams);
+            if (allTargetObjects[i] != null)
+                RunSingleInteractionFunction(allTargetObjects[i], actionType, jsonParams);
         }
 
     }
