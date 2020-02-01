@@ -19,11 +19,14 @@ public class SuckInReaction : ObjectReaction
 
     public override void CollisionEnterReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, Collision2D collision)
     {
-        if (!startZooming)
+        if (actionType == InteractionAction.InteractionActionType.SuckToMe)
         {
-            startZooming = true;
-            StartCoroutine(ZoomIn());
+            if (!startZooming)
+            {
+                startZooming = true;
+                StartCoroutine(ZoomIn());
 
+            }
         }
 
     }

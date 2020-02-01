@@ -895,7 +895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8807539d6a6a140bca0f00851d348b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suckForceRatio: 200
+  suckForceRatio: 20
   maximumSpeed: 10
 --- !u!114 &131180200
 MonoBehaviour:
@@ -2667,7 +2667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8807539d6a6a140bca0f00851d348b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suckForceRatio: 200
+  suckForceRatio: 20
   maximumSpeed: 10
 --- !u!114 &362105040
 MonoBehaviour:
