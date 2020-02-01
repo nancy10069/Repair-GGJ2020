@@ -92,6 +92,10 @@ public class LevelManager : MonoBehaviour
     }
     public Animator chara;
     public Animator holder;
+    public GameObject btnHodler;
+    public void startGame(){
+        btnHodler.SetActive(true);
+    }
     public void startRunning()
     {
 

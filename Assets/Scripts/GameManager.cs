@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
         instance=this;
 
     }
+    public void startGame(){
+        level=0;
+        Application.LoadLevel("Main");
+    }
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
