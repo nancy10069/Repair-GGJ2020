@@ -5,14 +5,17 @@ using UnityEngine;
 public class BodyComp
 {
     public int index;
+    public Sprite sprite;
     public List<Sprite> sprites = new List<Sprite> { };
     public int score;
     public string anmName;
     //    public bool hasTwoLeg=true;
 }
 
+
 public class LevelManager : MonoBehaviour
 {
+    public UnityEngine.UI.Image[] imgs;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
     void Start()
@@ -24,10 +27,13 @@ public class LevelManager : MonoBehaviour
                 BodyComp bc = new BodyComp();
                 bc.index = i;
                 bc.anmName = typeName[j] + "Animation";//?列个表
-                if (j == 0)
+                bc.sprite =Resources.Load
+                    (typeName[j] + i, typeof(Sprite)) as Sprite;
+//                 bc.sprites.Add(Resources.Load
+  //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
+               /* if (j == 0)
                 {
-                    bc.sprites.Add(Resources.Load
-                    (typeName[j] + i, typeof(Sprite)) as Sprite);
+                   
                 }
                 else
                 {
@@ -37,7 +43,7 @@ public class LevelManager : MonoBehaviour
                            (typeName[j] + i + "_" + k, typeof(Sprite)) as Sprite);
 
                     }
-                }
+                } */
                 switch (j)
                 {
                     case 0: heads.Add(bc); break;
@@ -77,22 +83,26 @@ public class LevelManager : MonoBehaviour
             currBodyParts[i] = Mathf.Clamp(currBodyParts[i], 0, 1);//max three comps?
         }
         BodyComp head = heads[currBodyParts[0]];
-        //   headAnm.Play(head.anmName);
-        headspr.sprite = head.sprites[0];
+        headspr.sprite = head.sprite;//.sprites[0];
+        imgs[0].sprite = head.sprite;
         BodyComp arm = arms[currBodyParts[1]];
-        //   armAnm.Play(arm.anmName);
+        imgs[1].sprite = arm.sprite;
         int count = 0;
+
         foreach (SpriteRenderer sr in armsprs)
         {
-            sr.sprite = arm.sprites[count];
+            sr.sprite = arm.sprite;//sprites[count];
             count++;
         }
+
+
         BodyComp leg = legs[currBodyParts[2]];
-        // armAnm.Play(leg.anmName);
+                imgs[2].sprite = leg.sprite;
+
         count = 0;
         foreach (SpriteRenderer sr in legsprs)
         {
-            sr.sprite = leg.sprites[count];
+            sr.sprite = leg.sprite;//sprites[count];
             count++;
         }
 
@@ -105,6 +115,10 @@ public class LevelManager : MonoBehaviour
     public Animator headAnm;
     public Animator armAnm;
     public Animator legAnm;
+    public ArmBehaviour[] armBehaviours;
+    public LegBehaviour[] legBehaviours;
+
+
     //所有资源
     public List<BodyComp> heads = new List<BodyComp>();
     public List<BodyComp> arms = new List<BodyComp>();
