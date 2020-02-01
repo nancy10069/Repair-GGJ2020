@@ -16,6 +16,11 @@ public class BodyPartBehaviour : MonoBehaviour
     }
 
 
+    public bool active
+    {
+        get; set;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,10 +30,13 @@ public class BodyPartBehaviour : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        AllObjectInSceneInteraction();
+        if (active)
+            AllObjectInSceneInteraction();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!active)
+            return;
         var physicsInfo = collision.gameObject.GetComponentInChildren<PhysicsInteractionInfo>();
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
@@ -41,6 +49,7 @@ public class BodyPartBehaviour : MonoBehaviour
                     {
                         RunSingleInteractionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams, false);
                     }
+                    RunSingleCollisionFunction(collision.gameObject, currentinteractionData.interactionActions[j].actionType, currentinteractionData.interactionActions[j].jsonParams, collision);
                 }
             }
 
@@ -81,5 +90,10 @@ public class BodyPartBehaviour : MonoBehaviour
     public virtual void RunSingleInteractionFunction(GameObject targetObject, InteractionAction.InteractionActionType actionType, string jsonParams, bool isCountinuous)
     {
         targetObject.GetComponents<ObjectReaction>().ToList().ForEach(p => p.TriggerReaction(this, actionType, jsonParams, isCountinuous));
+    }
+
+    public virtual void RunSingleCollisionFunction(GameObject targetObject, InteractionAction.InteractionActionType actionType, string jsonParams, Collision2D collision)
+    {
+        targetObject.GetComponents<ObjectReaction>().ToList().ForEach(p => p.CollisionEnterReaction(this, actionType, jsonParams, collision));
     }
 }

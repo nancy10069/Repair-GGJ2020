@@ -7,12 +7,23 @@ public class DestroyReaction : ObjectReaction
 
     [SerializeField]
     public GameObject destroyParticleEffect;
+
+    public override void CollisionEnterReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, Collision2D collision)
+    {
+        if (actionType == InteractionAction.InteractionActionType.Destroy)
+        {
+            Instantiate(destroyParticleEffect, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
+
+        }
+    }
+
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinous)
     {
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {
             Instantiate(destroyParticleEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
 
         }
     }

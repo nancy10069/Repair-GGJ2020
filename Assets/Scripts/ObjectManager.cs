@@ -11,6 +11,11 @@ public class ObjectManager : MonoBehaviour
     {
         instance = this;
         typeTargetDict = new Dictionary<PhysicsInteractionInfo.PhysicsInteractionType, List<GameObject>>();
+    }
+
+    public void RefreshAllObjectsDict()
+    {
+        typeTargetDict = new Dictionary<PhysicsInteractionInfo.PhysicsInteractionType, List<GameObject>>();
         var allPhysicInfo = FindObjectsOfType<PhysicsInteractionInfo>();
 
         foreach (PhysicsInteractionInfo.PhysicsInteractionType type in Enum.GetValues(typeof(PhysicsInteractionInfo.PhysicsInteractionType)))
@@ -33,7 +38,8 @@ public class ObjectManager : MonoBehaviour
         {
             if (((int)type & (int)targetType) > 0)
             {
-                ans.AddRange(typeTargetDict[type]);
+                if (typeTargetDict.ContainsKey(type))
+                    ans.AddRange(typeTargetDict[type]);
             }
         }
         return ans;

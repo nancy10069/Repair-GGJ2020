@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BodyComp
 {
@@ -32,30 +33,34 @@ public class LevelManager : MonoBehaviour
                 BodyComp bc = new BodyComp();
                 bc.index = i;
                 bc.anmName = typeName[j] + "Animation";//?列个表
-                bc.sprite =Resources.Load
+                bc.sprite = Resources.Load
                     (typeName[j] + i, typeof(Sprite)) as Sprite;
-                if (bc.index==3 && j==1){
-                    bc.anmName="WingAnimation";
-                }else if (j==2){
-                    if(bc.index==2||bc.index==1){
-                        bc.anmName="TankAnimation";
-                    }
-                }
-//                 bc.sprites.Add(Resources.Load
-  //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
-               /* if (j == 0)
+                if (bc.index == 3 && j == 1)
                 {
-                   
+                    bc.anmName = "WingAnimation";
                 }
-                else
+                else if (j == 2)
                 {
-                    for (int k = 0; k < 2; k++)
+                    if (bc.index == 2 || bc.index == 1)
                     {
-                        bc.sprites.Add(Resources.Load
-                           (typeName[j] + i + "_" + k, typeof(Sprite)) as Sprite);
-
+                        bc.anmName = "TankAnimation";
                     }
-                } */
+                }
+                //                 bc.sprites.Add(Resources.Load
+                //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
+                /* if (j == 0)
+                 {
+
+                 }
+                 else
+                 {
+                     for (int k = 0; k < 2; k++)
+                     {
+                         bc.sprites.Add(Resources.Load
+                            (typeName[j] + i + "_" + k, typeof(Sprite)) as Sprite);
+
+                     }
+                 } */
                 switch (j)
                 {
                     case 0: heads.Add(bc); break;
@@ -66,7 +71,8 @@ public class LevelManager : MonoBehaviour
         }
     }
     public GameObject endPage;
-    public void nextLevel(){
+    public void nextLevel()
+    {
 
         GameManager.instance.nextLevel();
         Application.LoadLevel("Main");
@@ -93,30 +99,40 @@ public class LevelManager : MonoBehaviour
         holder.Play("Small");
         StartCoroutine(running());
     }
-    IEnumerator running(){
+    IEnumerator running()
+    {
         yield return new WaitForSeconds(0.5f);
+        ObjectManager.instance.RefreshAllObjectsDict();
         run();
     }
-    IEnumerator endding(){
+    IEnumerator endding()
+    {
         yield return new WaitForSeconds(3f);
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = false);
         endPage.SetActive(true);
     }
-    void run(){
+    void run()
+    {
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = true);
         StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
         BodyComp arm = arms[currBodyParts[1]];
-//        armAnm.Play(arm.anmName);//所有的anm
-        foreach(GameObject obj in armObjects){
-            foreach(Animator a in obj.transform.GetComponentsInChildren<Animator>()){
+        //        armAnm.Play(arm.anmName);//所有的anm
+        foreach (GameObject obj in armObjects)
+        {
+            foreach (Animator a in obj.transform.GetComponentsInChildren<Animator>())
+            {
                 a.Play(arm.anmName);
             }
         }
         BodyComp leg = legs[currBodyParts[2]];
-     //   legAnm.Play(leg.anmName);
-         foreach(GameObject obj in legObjects){
-            foreach(Animator a in obj.transform.GetComponentsInChildren<Animator>()){
+        //   legAnm.Play(leg.anmName);
+        foreach (GameObject obj in legObjects)
+        {
+            foreach (Animator a in obj.transform.GetComponentsInChildren<Animator>())
+            {
                 a.Play(leg.anmName);
             }
         }
@@ -132,38 +148,40 @@ public class LevelManager : MonoBehaviour
         imgs[0].sprite = head.sprite;
         BodyComp arm = arms[currBodyParts[1]];
         imgs[1].sprite = arm.sprite;
-    //    int count = 0;
-/*
-        foreach (SpriteRenderer sr in armsprs)
+        //    int count = 0;
+        /*
+                foreach (SpriteRenderer sr in armsprs)
+                {
+                    sr.sprite = arm.sprite;//sprites[count];
+                    count++;
+                } */
+        foreach (GameObject obj in armObjects)
         {
-            sr.sprite = arm.sprite;//sprites[count];
-            count++;
-        } */
-        foreach(GameObject obj in armObjects){
             obj.SetActive(false);
         }
         armObjects[arm.index].SetActive(true);
 
         BodyComp leg = legs[currBodyParts[2]];
-                imgs[2].sprite = leg.sprite;
- foreach(GameObject obj in legObjects){
+        imgs[2].sprite = leg.sprite;
+        foreach (GameObject obj in legObjects)
+        {
             obj.SetActive(false);
         }
         legObjects[leg.index].SetActive(true);
-    /*   // count = 0;
-        foreach (SpriteRenderer sr in legsprs)
-        {
-            sr.sprite = leg.sprite;//sprites[count];
-          //  count++;
-        } */
+        /*   // count = 0;
+            foreach (SpriteRenderer sr in legsprs)
+            {
+                sr.sprite = leg.sprite;//sprites[count];
+              //  count++;
+            } */
 
     }
     public SpriteRenderer headspr;
-//    public SpriteRenderer[] armsprs;
-   // public SpriteRenderer[] legsprs;//leg?
+    //    public SpriteRenderer[] armsprs;
+    // public SpriteRenderer[] legsprs;//leg?
 
     public GameObject[] armObjects;
-    public GameObject[]  legObjects;
+    public GameObject[] legObjects;
     public Animator headAnm;
     public Animator armAnm;
     public Animator legAnm;
