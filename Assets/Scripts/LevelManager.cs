@@ -8,7 +8,7 @@ public class BodyComp
     public int index;
     public Sprite sprite;
     public List<Sprite> sprites = new List<Sprite> { };
-    public int score;
+    public int[] score=new int[4];
     public string anmName;
     //    public bool hasTwoLeg=true;
 }
@@ -48,21 +48,6 @@ public class LevelManager : MonoBehaviour
                         bc.anmName = "TankAnimation";
                     }
                 }
-                //                 bc.sprites.Add(Resources.Load
-                //                  (typeName[j] + i, typeof(Sprite)) as Sprite);
-                /* if (j == 0)
-                 {
-
-                 }
-                 else
-                 {
-                     for (int k = 0; k < 2; k++)
-                     {
-                         bc.sprites.Add(Resources.Load
-                            (typeName[j] + i + "_" + k, typeof(Sprite)) as Sprite);
-
-                     }
-                 } */
                 switch (j)
                 {
                     case 0: heads.Add(bc); break;
@@ -71,7 +56,22 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+        arms[0].score=new int[]{1,0,0,-1};
+        arms[1].score=new int[]{1,1,-1,1};
+        arms[2].score=new int[]{1,-1,-1,1};
+        arms[3].score=new int[]{1,0,1,-1};
+        arms[4].score=new int[]{1,-1,-1,1};
+
+        legs[0].score=new int[]{1,0,0,-1};
+        legs[1].score=new int[]{1,-1,-1,1};
+        legs[2].score=new int[]{1,1,-1,1};
+        legs[3].score=new int[]{1,0,1,-1};
+        legs[4].score=new int[]{1,-1,-1,1};
+
     }
+
+    //在这里写个表？
+
     public GameObject endPage;
     public void nextLevel()
     {
