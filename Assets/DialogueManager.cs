@@ -7,10 +7,22 @@ public class DialogueManager : MonoBehaviour
 
     //level 1,2,3,4
     public List<string[]> diags = new List<string[]>{
-        new string[]{"111111","22222"},
-        new string[]{"133311111","22222"},
-        new string[]{"11114411","22222"},
-        new string[]{"111155511","22222"},
+        new string[]{"Hi! Nice to meet you..",
+        "My most anticipated game 'HRP' is released, I need to get it in Nintendo shop.",
+        "But I was injured in the accident.. Can you help repair my body?"},
+        new string[]{"Hello there.","My girlfriend hates me for being too sissy.",
+        "So I promised her a perfect date.",
+        "Can you transform my body so I can be a man?",
+        "By the way, she has many suitors. Give me a weapon that can drive away those nasty guys!"},
+        new string[]{"Hi. I am doing delivery.",
+        "Normally, I need to go down the mountain and go down the sea of ​​fire to break through countless obstacles and deliver food to people.",
+        "This is the glory of our deliveryman.",
+        "But someone called for a takeaway on nyu's lecture and asked me to enter lightly.",
+        "This is stumping me! I'm a brave soldier, and the only thing I can't do is to be light-footed. can you help me?"},
+        new string[]{"I am a game developer. And here comes TGA 2020! ",
+        "I don't want to be a human being anymore! I decided to abandon this human body because human beings have limits. Only by pushing the limits can you develop the best game!",
+        "Those guys like Hideo Miyazaki and Hideo Kojima will be obstacles on my way ...",
+        "come on! Help me win this year's TGA Game of the Year award!"},
 
     };
     // Start is called before the first frame update

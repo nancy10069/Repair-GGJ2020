@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+<<<<<<< HEAD
+    public const int maxLevel = 4;
+=======
     public GameObject textholder;
     public Text text;
     string[] texts=new string[]{"With the development of technology, people can transform their bodies as they wish.",
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
         text.text = texts[curr];
     }
     int curr=0;
+>>>>>>> 6789c682272238082dce5599e7bcbf63b128736a
     public int level
     {
         get
