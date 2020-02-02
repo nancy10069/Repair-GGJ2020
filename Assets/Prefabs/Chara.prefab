@@ -992,7 +992,7 @@ MonoBehaviour:
   - targetType: 24
     interactionActions:
     - targetScope: 0
-      actionType: 1
+      actionType: 0
       jsonParams: 
   _active: 0
 --- !u!1 &580170326
@@ -3719,7 +3719,7 @@ MonoBehaviour:
   - targetType: 24
     interactionActions:
     - targetScope: 0
-      actionType: 1
+      actionType: 0
       jsonParams: 
   _active: 0
 --- !u!1 &1867543572722016479
