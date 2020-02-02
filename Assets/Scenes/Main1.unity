@@ -331,12 +331,13 @@ MonoBehaviour:
   chara: {fileID: 636875635}
   holder: {fileID: 270800225}
   btnHodler: {fileID: 1200599717}
+  endText: {fileID: 0}
   headspr: {fileID: 1108458518}
   armObjects:
   - {fileID: 1108458511}
-  - {fileID: 1108458517}
   - {fileID: 1108458516}
   - {fileID: 1108458515}
+  - {fileID: 1108458517}
   - {fileID: 1108458514}
   legObjects:
   - {fileID: 1108458510}
