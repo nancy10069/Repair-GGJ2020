@@ -57,6 +57,9 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+<<<<<<< HEAD
+        
+=======
         arms[0].score=new int[]{1,0,0,-1};
         arms[1].score=new int[]{1,1,-1,1};
         arms[2].score=new int[]{1,-1,-1,1};
@@ -69,6 +72,7 @@ public class LevelManager : MonoBehaviour
         legs[3].score=new int[]{1,0,1,-1};
         legs[4].score=new int[]{1,-1,-1,1};
 
+>>>>>>> cd30d1faec47223fe8bebfb9649ba73e16745a65
     }
 
     //在这里写个表？
