@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.level = 0;
+        AudioManager.instance.PlayBGM(0);
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -93,7 +95,8 @@ public class LevelManager : MonoBehaviour
     public Animator chara;
     public Animator holder;
     public GameObject btnHodler;
-    public void startGame(){
+    public void startGame()
+    {
         btnHodler.SetActive(true);
     }
     public void startRunning()
