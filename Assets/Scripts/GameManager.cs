@@ -6,23 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public int level
     {
-        get
-        {
-            return _level;
-        }
-        set
-        {
-            if (_level != value)
-            {
-                _level = value;
-
-                AudioManager.instance.PlayBGM(_level);
-                AudioManager.instance.StopSFX();
-            }
-        }
+        get;set;
     }
-
-    private int _level;
     public static GameManager instance;
     // Start is called before the first frame update
     void Awake()
@@ -47,7 +32,7 @@ public class GameManager : MonoBehaviour
     {
         level = 0;
 
-        Application.LoadLevel("Main");
+        Application.LoadLevel("Main0");
     }
     //void Start()
     //{

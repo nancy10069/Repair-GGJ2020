@@ -123,6 +123,8 @@ public class LevelManager : MonoBehaviour
     }
     void run()
     {
+
+        Debug.Log("Start On Run!");
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
         {
             //p.active = true;

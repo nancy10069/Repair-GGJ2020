@@ -11,7 +11,7 @@ public class BodyPartBehaviour : MonoBehaviour
     PhysicsInteractionInfo physicsInfo;
     
 
-    private void Awake()
+    protected virtual void Awake()
     {
         physicsInfo = GetComponent<PhysicsInteractionInfo>();
     }
@@ -52,12 +52,14 @@ public class BodyPartBehaviour : MonoBehaviour
 
     private bool shouldIgnorePhysics = false;
 
-    private bool _active;
+    [SerializeField]
+    private bool _active = false;
 
     private void OnEnable()
     {
         onRunAudioClipIndex = -1;
         shouldIgnorePhysics = false;
+        _active = false;
 
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
