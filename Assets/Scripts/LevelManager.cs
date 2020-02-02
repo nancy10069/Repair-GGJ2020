@@ -118,6 +118,10 @@ public class LevelManager : MonoBehaviour
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
+    public void end(){
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
+        endPage.SetActive(true);
+    }
     void run()
     {
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
@@ -204,6 +208,7 @@ public class LevelManager : MonoBehaviour
     public List<BodyComp> legs = new List<BodyComp>();
 
     // Update is called once per frame
+    
     void Update()
     {
 
