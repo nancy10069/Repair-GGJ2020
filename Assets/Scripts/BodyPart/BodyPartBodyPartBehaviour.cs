@@ -9,6 +9,7 @@ public class BodyPartBehaviour : MonoBehaviour
 {
     public List<InteractionBehaviourData> interactionBehaviourData;
     PhysicsInteractionInfo physicsInfo;
+    
 
     private void Awake()
     {
@@ -20,8 +21,7 @@ public class BodyPartBehaviour : MonoBehaviour
     public virtual void OnRun()
     {
         active = true;
-        if (onRunAudioClipIndex != -1)
-            AudioManager.instance.PlaySFX(onRunAudioClipIndex);
+        AudioManager.instance.PlaySFX(onRunAudioClipIndex);
     }
 
     public virtual void OnEndRun()
@@ -29,15 +29,36 @@ public class BodyPartBehaviour : MonoBehaviour
         active = false;
     }
 
-    public bool active
+    public virtual bool active
     {
-        get; set;
+        get
+        {
+            return _active;
+        }
+        set
+        {
+            _active = value;
+            if (!_active)
+            {
+                GetComponent<Collider2D>().isTrigger = true;
+            }
+            else
+            {
+                GetComponent<Collider2D>().isTrigger = shouldIgnorePhysics;
+                //GetComponent<Collider2D>().isTrigger = true;
+            }
+        }
     }
+
+    private bool shouldIgnorePhysics = false;
+
+    private bool _active;
 
     private void OnEnable()
     {
         onRunAudioClipIndex = -1;
-        GetComponent<Collider2D>().isTrigger = false;
+        shouldIgnorePhysics = false;
+
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             for (int j = 0; j < interactionBehaviourData[i].interactionActions.Count; j++)
@@ -45,7 +66,7 @@ public class BodyPartBehaviour : MonoBehaviour
                 var targetAction = interactionBehaviourData[i].interactionActions[j];
                 if (targetAction.actionType == InteractionAction.InteractionActionType.NoPhysicsInteraction)
                 {
-                    GetComponent<Collider2D>().isTrigger = true;
+                    shouldIgnorePhysics = true;
                 }
                 else if (targetAction.actionType == InteractionAction.InteractionActionType.SuckToMe)
                 {

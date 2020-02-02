@@ -21,7 +21,8 @@ public class LevelManager : MonoBehaviour
 
 
     public UnityEngine.UI.Image[] imgs;
-    public GameObject[] scenes;
+    //public GameObject[] scenes;
+    public GameObject scene;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
     void Start()
@@ -71,13 +72,15 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+        
     }
     public GameObject endPage;
     public void nextLevel()
     {
-
         GameManager.instance.nextLevel();
-        Application.LoadLevel("Main");
+        Application.LoadLevel("Main" + GameManager.instance.level);
+        //GameManager.instance.nextLevel();
+        //Application.LoadLevel("Main");
         //
     }
     public int[] currBodyParts = new int[3];
@@ -102,7 +105,8 @@ public class LevelManager : MonoBehaviour
     public void startRunning()
     {
 
-        scenes[GameManager.instance.level].SetActive(true);
+        //scenes[GameManager.instance.level].SetActive(true);
+        scene.SetActive(true);
         holder.Play("Small");
         StartCoroutine(running());
     }
