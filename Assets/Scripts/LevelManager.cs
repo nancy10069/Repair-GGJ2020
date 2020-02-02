@@ -73,10 +73,15 @@ public class LevelManager : MonoBehaviour
 
     //在这里写个表？
 
+    bool win=true;
     public GameObject endPage;
     public void nextLevel()
     {
-        GameManager.instance.nextLevel();
+        if (GameManager.instance.level==3){
+            GameManager.instance.end();
+            return;
+        }
+        GameManager.instance.nextLevel(win);
         Application.LoadLevel("Main" + GameManager.instance.level);
         //GameManager.instance.nextLevel();
         //Application.LoadLevel("Main");
