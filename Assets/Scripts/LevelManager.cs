@@ -134,6 +134,7 @@ public class LevelManager : MonoBehaviour
         endText = endPage.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>();
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
+        win=false;
         int armScore = arms[currBodyParts[1]].score[GameManager.instance.level];
         int legScore = legs[currBodyParts[2]].score[GameManager.instance.level];
         endText.text = "Oops!!";
@@ -141,10 +142,12 @@ public class LevelManager : MonoBehaviour
         {
             if (armScore + legScore >= 1)
             {
+                win=true;
                 endText.text = "Excellant!!";
             }
             else
             {
+                win=true;
                 endText.text = "Fine!";
 
             }
