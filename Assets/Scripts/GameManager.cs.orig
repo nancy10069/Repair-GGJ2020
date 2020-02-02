@@ -4,44 +4,79 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-<<<<<<< HEAD
     public const int maxLevel = 4;
-=======
     public GameObject textholder;
     public Text text;
-    string[] texts=new string[]{"With the development of technology, people can transform their bodies as they wish.",
+    string[] texts = new string[]{"With the development of technology, people can transform their bodies as they wish.",
     "This technology was originally intended for people with disabilities, but it has since been used in all walks of life.",
     "You are the first trial operation promotion point of human repair project. Prove your ability by replacing body parts according to customer requirements!"};
-    public void openText(){
+    public void openText()
+    {
         textholder.SetActive(true);
         render();
+
+    }
+<<<<<<< HEAD
+    float elapsed = 0;
+    void FixedUpdate()
+    {
+        if (!isMenu) return;
+        elapsed += Time.deltaTime;
+        if (elapsed > 3)
+        {
+=======
+    public GameObject replayBtn;
+    int sum=0;
+    
+    public void end(){
+        
+
+        textholder.SetActive(true);
+        text.text = (sum>=3)?"win":"lose";
+        replayBtn.SetActive(true);
+    }
+    public void replay(){
+        Destroy(this.gameObject);
+        Application.LoadLevel("Scene0");
 
     }
     float elapsed=0;
     void FixedUpdate(){
         if (!isMenu)return;
         elapsed+=Time.deltaTime;
-        if (elapsed>3){
+        if (elapsed>4){
+>>>>>>> 43ec7dc26594ba704f4ce15d5f81fac45b53c021
             next();
-            elapsed=0;
+            elapsed = 0;
         }
     }
-    public void next(){
+    public void next()
+    {
         curr++;
-        if (curr>=texts.Length){
+        if (curr >= texts.Length)
+        {
             startGame();
+<<<<<<< HEAD
+            isMenu = false;
+=======
+            textholder.SetActive(false);
             isMenu=false;
             
         }else{
+>>>>>>> 43ec7dc26594ba704f4ce15d5f81fac45b53c021
 
-        render();
+        }
+        else
+        {
+
+            render();
         }
     }
-     void render(){
+    void render()
+    {
         text.text = texts[curr];
     }
-    int curr=0;
->>>>>>> 6789c682272238082dce5599e7bcbf63b128736a
+    int curr = 0;
     public int level
     {
         get
@@ -86,8 +121,11 @@ public class GameManager : MonoBehaviour
     //{
     //    DontDestroyOnLoad(this.gameObject);
     //}
-    public void nextLevel()
+    public void nextLevel(bool win)
     {
+        if (win){
+            sum++;
+        }
         //        Debug.Log("?");
         //Debug.Log(level);
         level = level + 1;
@@ -100,13 +138,14 @@ public class GameManager : MonoBehaviour
         //reset
 
     }
-    bool isMenu=true;
+    bool isMenu = true;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && isMenu){
+        if (Input.GetKeyUp(KeyCode.Space) && isMenu)
+        {
             next();
-            elapsed=0;
+            elapsed = 0;
         }
 
     }

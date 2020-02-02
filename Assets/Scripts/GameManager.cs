@@ -16,13 +16,26 @@ public class GameManager : MonoBehaviour
         render();
 
     }
-    float elapsed = 0;
-    void FixedUpdate()
-    {
-        if (!isMenu) return;
-        elapsed += Time.deltaTime;
-        if (elapsed > 3)
-        {
+    public GameObject replayBtn;
+    int sum=0;
+    
+    public void end(){
+        
+
+        textholder.SetActive(true);
+        text.text = (sum>=3)?"win":"lose";
+        replayBtn.SetActive(true);
+    }
+    public void replay(){
+        Destroy(this.gameObject);
+        Application.LoadLevel("Scene0");
+
+    }
+    float elapsed=0;
+    void FixedUpdate(){
+        if (!isMenu)return;
+        elapsed+=Time.deltaTime;
+        if (elapsed>4){
             next();
             elapsed = 0;
         }
@@ -33,11 +46,10 @@ public class GameManager : MonoBehaviour
         if (curr >= texts.Length)
         {
             startGame();
-            isMenu = false;
-
-        }
-        else
-        {
+            textholder.SetActive(false);
+            isMenu=false;
+            
+        }else{
 
             render();
         }
@@ -91,8 +103,11 @@ public class GameManager : MonoBehaviour
     //{
     //    DontDestroyOnLoad(this.gameObject);
     //}
-    public void nextLevel()
+    public void nextLevel(bool win)
     {
+        if (win){
+            sum++;
+        }
         //        Debug.Log("?");
         //Debug.Log(level);
         level = level + 1;
