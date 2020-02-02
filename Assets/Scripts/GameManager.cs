@@ -47,7 +47,10 @@ public class GameManager : MonoBehaviour
     }
     public void nextLevel()
     {
-        level++;
+//        Debug.Log("?");
+        Debug.Log(level);
+        level=level+1;
+        Debug.Log(level);
         renderLevel();
     }
     void renderLevel()
