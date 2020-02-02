@@ -1,9 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+    public GameObject textholder;
+    public Text text;
+    string[] texts=new string[]{"With the development of technology, people can transform their bodies as they wish.",
+    "This technology was originally intended for people with disabilities, but it has since been used in all walks of life.",
+    "You are the first trial operation promotion point of human repair project. Prove your ability by replacing body parts according to customer requirements!"};
+    public void openText(){
+        textholder.SetActive(true);
+        render();
+
+    }
+    float elapsed=0;
+    void FixedUpdate(){
+        if (!isMenu)return;
+        elapsed+=Time.deltaTime;
+        if (elapsed>3){
+            next();
+            elapsed=0;
+        }
+    }
+    public void next(){
+        curr++;
+        if (curr>=texts.Length){
+            startGame();
+            isMenu=false;
+            
+        }else{
+
+        render();
+        }
+    }
+     void render(){
+        text.text = texts[curr];
+    }
+    int curr=0;
     public int level
     {
         get
@@ -62,10 +96,14 @@ public class GameManager : MonoBehaviour
         //reset
 
     }
-
+    bool isMenu=true;
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Space) && isMenu){
+            next();
+            elapsed=0;
+        }
 
     }
 }
