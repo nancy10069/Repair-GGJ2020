@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
+    public Sprite[] endPics;
+    public Image image;
     public const int maxLevel = 4;
     public GameObject textholder;
     public Text text;
@@ -23,12 +25,17 @@ public class GameManager : MonoBehaviour
         
 
         textholder.SetActive(true);
-        if (sum>=3)
+        if (sum>=3){
+
         endText.text = "Your customers are very satisfied ...\n"+
         "The human repair project was a great success.\n"+"Congratulations!";
-        else
+    image.sprite=endPics[0];
+        }
+        else{
         endText.text="Sometimes technology is not necessarily a panacea ...";
-       
+            image.sprite=endPics[1];
+
+        }
         replayBtn.SetActive(true);
     }
     public void replay(){

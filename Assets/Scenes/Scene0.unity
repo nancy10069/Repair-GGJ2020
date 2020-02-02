@@ -1563,6 +1563,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8192175886408033029, guid: 02290cc4ae1fb4406a19d9fddb46a72f,
         type: 3}
+      propertyPath: endPics.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8192175886408033029, guid: 02290cc4ae1fb4406a19d9fddb46a72f,
+        type: 3}
       propertyPath: textholder
       value: 
       objectReference: {fileID: 949587971}
@@ -1581,5 +1586,22 @@ PrefabInstance:
       propertyPath: endText
       value: 
       objectReference: {fileID: 11590449}
+    - target: {fileID: 8192175886408033029, guid: 02290cc4ae1fb4406a19d9fddb46a72f,
+        type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 1785729227}
+    - target: {fileID: 8192175886408033029, guid: 02290cc4ae1fb4406a19d9fddb46a72f,
+        type: 3}
+      propertyPath: endPics.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 38e5beae7855d4d49ac900bcb95e48af,
+        type: 3}
+    - target: {fileID: 8192175886408033029, guid: 02290cc4ae1fb4406a19d9fddb46a72f,
+        type: 3}
+      propertyPath: endPics.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: feeb56aed54f14ed1a3dcb41f527a208,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02290cc4ae1fb4406a19d9fddb46a72f, type: 3}
