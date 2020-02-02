@@ -26,8 +26,8 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.level = 0;
-        AudioManager.instance.PlayBGM(0);
+        //GameManager.instance.level = 0;
+        //AudioManager.instance.PlayBGM(0);
         for (int i = 0; i < 5; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -115,12 +115,16 @@ public class LevelManager : MonoBehaviour
     IEnumerator endding()
     {
         yield return new WaitForSeconds(3f);
-        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = false);
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
     void run()
     {
-        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = true);
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
+        {
+            //p.active = true;
+            p.OnRun();
+        });
         StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];

@@ -6,7 +6,7 @@ public class DialogueManager : MonoBehaviour
 {
 
     //level 1,2,3,4
-    public List<string[]>diags=new List<string[]>{
+    public List<string[]> diags = new List<string[]>{
         new string[]{"111111","22222"},
         new string[]{"133311111","22222"},
         new string[]{"11114411","22222"},
@@ -18,29 +18,33 @@ public class DialogueManager : MonoBehaviour
     {
         renderText();
     }
-    void renderText(){
+    void renderText()
+    {
         text.text = diags[GameManager.instance.level][currNode];
     }
     public LevelManager level;
-    public void next(){
+    public void next()
+    {
         currNode++;
-        
-        if (currNode==diags[GameManager.instance.level].Length){
-            gameObject.SetActive(false);
-        level.startGame();
-        }else{
-                    renderText();
 
+        if (currNode == diags[GameManager.instance.level].Length)
+        {
+            gameObject.SetActive(false);
+            level.startGame();
+        }
+        else
+        {
+            renderText();
         }
     }
     public UnityEngine.UI.Text text;
 
-    int currNode=0;
+    int currNode = 0;
 
-    
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space)){next();}
+        if (Input.GetKeyUp(KeyCode.Space)) { next(); }
     }
 }
