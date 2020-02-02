@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
     public UnityEngine.UI.Image[] imgs;
     //public GameObject[] scenes;
     public GameObject scene;
+    public GameObject lab;
     string[] typeName = new string[] { "Head", "Arm", "Leg" };
     // Start is called before the first frame update
     void Start()
@@ -73,11 +74,12 @@ public class LevelManager : MonoBehaviour
 
     //在这里写个表？
 
-    bool win=true;
+    bool win = true;
     public GameObject endPage;
     public void nextLevel()
     {
-        if (GameManager.instance.level==3){
+        if (GameManager.instance.level == 3)
+        {
             GameManager.instance.end();
             return;
         }
@@ -111,6 +113,7 @@ public class LevelManager : MonoBehaviour
 
         //scenes[GameManager.instance.level].SetActive(true);
         scene.SetActive(true);
+        lab.SetActive(false);
         holder.Play("Small");
         StartCoroutine(running());
     }
