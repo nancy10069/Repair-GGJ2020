@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
                 _level = value;
 
                 AudioManager.instance.PlayBGM(_level);
+                AudioManager.instance.StopSFX();
             }
         }
     }
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         level = 0;
-        
+
         Application.LoadLevel("Main");
     }
     void Start()

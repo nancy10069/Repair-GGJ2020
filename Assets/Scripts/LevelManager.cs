@@ -115,12 +115,16 @@ public class LevelManager : MonoBehaviour
     IEnumerator endding()
     {
         yield return new WaitForSeconds(3f);
-        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = false);
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
     void run()
     {
-        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.active = true);
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
+        {
+            //p.active = true;
+            p.OnRun();
+        });
         StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];

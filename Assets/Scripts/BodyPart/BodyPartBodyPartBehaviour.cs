@@ -15,6 +15,19 @@ public class BodyPartBehaviour : MonoBehaviour
         physicsInfo = GetComponent<PhysicsInteractionInfo>();
     }
 
+    int onRunAudioClipIndex;
+
+    public virtual void OnRun()
+    {
+        active = true;
+        if (onRunAudioClipIndex != -1)
+            AudioManager.instance.PlaySFX(onRunAudioClipIndex);
+    }
+
+    public virtual void OnEndRun()
+    {
+        active = false;
+    }
 
     public bool active
     {
@@ -23,15 +36,20 @@ public class BodyPartBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
+        onRunAudioClipIndex = -1;
         GetComponent<Collider2D>().isTrigger = false;
         for (int i = 0; i < interactionBehaviourData.Count; i++)
         {
             for (int j = 0; j < interactionBehaviourData[i].interactionActions.Count; j++)
             {
-                if (interactionBehaviourData[i].interactionActions[j].actionType == InteractionAction.InteractionActionType.NoPhysicsInteraction)
+                var targetAction = interactionBehaviourData[i].interactionActions[j];
+                if (targetAction.actionType == InteractionAction.InteractionActionType.NoPhysicsInteraction)
                 {
                     GetComponent<Collider2D>().isTrigger = true;
-                    return;
+                }
+                else if (targetAction.actionType == InteractionAction.InteractionActionType.SuckToMe)
+                {
+                    onRunAudioClipIndex = 0;
                 }
             }
         }
