@@ -121,6 +121,23 @@ public class LevelManager : MonoBehaviour
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
+    public void end(){
+        endText=endPage.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>();
+        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
+        endPage.SetActive(true);    
+        int armScore = arms[currBodyParts[1]].score[GameManager.instance.level];
+        int legScore = legs[currBodyParts[2]].score[GameManager.instance.level];
+        endText.text="Oops!!";
+        if (armScore!=-1 && legScore!=-1){
+            if (armScore+legScore>=1){
+                endText.text="Excellant!!";
+            }else{
+                endText.text="Fine!";
+
+            }
+        }
+    }
+    public UnityEngine.UI.Text endText;
     void run()
     {
 
@@ -130,7 +147,7 @@ public class LevelManager : MonoBehaviour
             //p.active = true;
             p.OnRun();
         });
-        StartCoroutine(endding());
+       // StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
@@ -209,6 +226,7 @@ public class LevelManager : MonoBehaviour
     public List<BodyComp> legs = new List<BodyComp>();
 
     // Update is called once per frame
+    
     void Update()
     {
 
