@@ -11,7 +11,7 @@ public class BounceOffReaction : ObjectReaction
 
     public override void CollisionEnterReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, Collision2D collision)
     {
-        
+
     }
 
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinuous)
@@ -23,6 +23,11 @@ public class BounceOffReaction : ObjectReaction
             rigidBody.velocity = Vector2.ClampMagnitude(rigidBody.velocity, maximumSpeed);
 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rigidBody.gravityScale = 1;
     }
 
 

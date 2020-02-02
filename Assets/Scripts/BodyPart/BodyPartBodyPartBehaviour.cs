@@ -21,6 +21,22 @@ public class BodyPartBehaviour : MonoBehaviour
         get; set;
     }
 
+    private void OnEnable()
+    {
+        GetComponent<Collider2D>().isTrigger = false;
+        for (int i = 0; i < interactionBehaviourData.Count; i++)
+        {
+            for (int j = 0; j < interactionBehaviourData[i].interactionActions.Count; j++)
+            {
+                if (interactionBehaviourData[i].interactionActions[j].actionType == InteractionAction.InteractionActionType.NoPhysicsInteraction)
+                {
+                    GetComponent<Collider2D>().isTrigger = true;
+                    return;
+                }
+            }
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
