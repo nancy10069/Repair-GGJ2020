@@ -8,7 +8,7 @@ public class DialogueManager : MonoBehaviour
     //level 1,2,3,4
     public List<string[]> diags = new List<string[]>{
         new string[]{"Hi! Nice to meet you..",
-        "My most anticipated game 'HRP' is released, I need to get it in Nintendo shop.",
+        "My most anticipated game 'HRP' is released, I need to get it at Nintendo shop.",
         "But I was injured in the accident.. Can you help repair my body?"},
         new string[]{"Hello there.","My girlfriend hates me for being too sissy.",
         "So I promised her a perfect date.",
@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
         "This is stumping me! I'm a brave soldier, and the only thing I can't do is to be light-footed. can you help me?"},
         new string[]{"I am a game developer. And here comes TGA 2020! ",
         "I don't want to be a human being anymore! I decided to abandon this human body because human beings have limits. Only by pushing the limits can you develop the best game!",
-        "Those guys like Hideo Miyazaki and Hideo Kojima will be obstacles on my way ...",
+        "Those guys like Hidetaka Miyazaki and Hideo Kojima want to stop me...",
         "come on! Help me win this year's TGA Game of the Year award!"},
 
     };
