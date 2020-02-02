@@ -27,12 +27,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (GameManager.instance != null)
+        if (GameManager.instance == null)
         {
-
-            DestroyImmediate(this.gameObject); return;
+            GameManager.instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-        instance = this;
+        else if (GameManager.instance != this)
+        {
+            DestroyImmediate(this.gameObject);
+        }
+        //if (GameManager.instance != null)
+        //{
+        //    DestroyImmediate(this.gameObject); return;
+        //}
+        //instance = this;
 
     }
     public void startGame()
@@ -41,20 +49,21 @@ public class GameManager : MonoBehaviour
 
         Application.LoadLevel("Main");
     }
-    void Start()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //void Start()
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
     public void nextLevel()
     {
-//        Debug.Log("?");
+        //        Debug.Log("?");
         Debug.Log(level);
-        level=level+1;
+        level = level + 1;
         Debug.Log(level);
         renderLevel();
     }
     void renderLevel()
     {
+        GameObject.Find("Scene" + level);
         //reset
 
     }
