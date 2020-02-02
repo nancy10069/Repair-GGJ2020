@@ -5,14 +5,15 @@ using UnityEngine;
 public class DestroyReaction : ObjectReaction
 {
 
-    [SerializeField]
-    public GameObject destroyParticleEffect;
+    //[SerializeField]
+    //public GameObject destroyParticleEffect;
 
     public override void CollisionEnterReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, Collision2D collision)
     {
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {
             ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
+            AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
             gameObject.SetActive(false);
 
         }
@@ -23,13 +24,14 @@ public class DestroyReaction : ObjectReaction
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {
             ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
+            AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
             gameObject.SetActive(false);
 
         }
     }
     protected override void Awake()
     {
-        destroyParticleEffect = Resources.Load<GameObject>("ExplosionResources/Explosionator");
+        //destroyParticleEffect = Resources.Load<GameObject>("ExplosionResources/Explosionator");
         base.Awake();
     }
 

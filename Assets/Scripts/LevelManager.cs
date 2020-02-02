@@ -8,7 +8,7 @@ public class BodyComp
     public int index;
     public Sprite sprite;
     public List<Sprite> sprites = new List<Sprite> { };
-    public int[] score=new int[4];
+    public int[] score = new int[4];
     public string anmName;
     //    public bool hasTwoLeg=true;
 }
@@ -57,17 +57,17 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
-        arms[0].score=new int[]{1,0,0,-1};
-        arms[1].score=new int[]{1,1,-1,1};
-        arms[2].score=new int[]{1,-1,-1,1};
-        arms[3].score=new int[]{1,0,1,-1};
-        arms[4].score=new int[]{1,-1,-1,1};
+        arms[0].score = new int[] { 1, 0, 0, -1 };
+        arms[1].score = new int[] { 1, 1, -1, 1 };
+        arms[2].score = new int[] { 1, -1, -1, 1 };
+        arms[3].score = new int[] { 1, 0, 1, -1 };
+        arms[4].score = new int[] { 1, -1, -1, 1 };
 
-        legs[0].score=new int[]{1,0,0,-1};
-        legs[1].score=new int[]{1,-1,-1,1};
-        legs[2].score=new int[]{1,1,-1,1};
-        legs[3].score=new int[]{1,0,1,-1};
-        legs[4].score=new int[]{1,-1,-1,1};
+        legs[0].score = new int[] { 1, 0, 0, -1 };
+        legs[1].score = new int[] { 1, -1, -1, 1 };
+        legs[2].score = new int[] { 1, 1, -1, 1 };
+        legs[3].score = new int[] { 1, 0, 1, -1 };
+        legs[4].score = new int[] { 1, -1, -1, 1 };
 
     }
 
@@ -121,18 +121,23 @@ public class LevelManager : MonoBehaviour
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
-    public void end(){
-        endText=endPage.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>();
+    public void end()
+    {
+        endText = endPage.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>();
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
-        endPage.SetActive(true);    
+        endPage.SetActive(true);
         int armScore = arms[currBodyParts[1]].score[GameManager.instance.level];
         int legScore = legs[currBodyParts[2]].score[GameManager.instance.level];
-        endText.text="Oops!!";
-        if (armScore!=-1 && legScore!=-1){
-            if (armScore+legScore>=1){
-                endText.text="Excellant!!";
-            }else{
-                endText.text="Fine!";
+        endText.text = "Oops!!";
+        if (armScore != -1 && legScore != -1)
+        {
+            if (armScore + legScore >= 1)
+            {
+                endText.text = "Excellant!!";
+            }
+            else
+            {
+                endText.text = "Fine!";
 
             }
         }
@@ -144,10 +149,13 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Start On Run!");
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
         {
-            //p.active = true;
-            p.OnRun();
+            if (p.gameObject.activeInHierarchy)
+            {
+                //p.active = true;
+                p.OnRun();
+            }
         });
-       // StartCoroutine(endding());
+        // StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
@@ -226,7 +234,7 @@ public class LevelManager : MonoBehaviour
     public List<BodyComp> legs = new List<BodyComp>();
 
     // Update is called once per frame
-    
+
     void Update()
     {
 

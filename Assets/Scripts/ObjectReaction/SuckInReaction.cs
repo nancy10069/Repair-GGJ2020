@@ -45,6 +45,7 @@ public class SuckInReaction : ObjectReaction
         }
         //Instantiate(Resources.Load<GameObject>("ExplosionResources/Explosionator"), transform.position, Quaternion.identity);
         ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
+        AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
         gameObject.SetActive(false);
     }
 

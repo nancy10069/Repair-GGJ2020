@@ -9,11 +9,12 @@ public class BodyPartBehaviour : MonoBehaviour
 {
     public List<InteractionBehaviourData> interactionBehaviourData;
     PhysicsInteractionInfo physicsInfo;
-    
+
 
     protected virtual void Awake()
     {
         physicsInfo = GetComponent<PhysicsInteractionInfo>();
+        onRunAudioClipIndex = -1;
     }
 
     int onRunAudioClipIndex;
@@ -21,7 +22,8 @@ public class BodyPartBehaviour : MonoBehaviour
     public virtual void OnRun()
     {
         active = true;
-        AudioManager.instance.PlaySFX(onRunAudioClipIndex);
+        if (onRunAudioClipIndex != -1)
+            AudioManager.instance.PlaySFX((AudioManager.SFXCategory)onRunAudioClipIndex);
     }
 
     public virtual void OnEndRun()

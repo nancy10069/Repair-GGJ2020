@@ -22,10 +22,16 @@ public class AudioManager : MonoBehaviour
         //BGMAudioSource.Play();
     }
 
-    public void PlaySFX(int sfxIndex)
+    public enum SFXCategory
     {
-        sfxIndex = sfxIndex % sfxAudios.Count;
-        SFXAudioSource.PlayOneShot(sfxAudios[sfxIndex]);
+        VacuumCleanerLooping = 0,
+        ExplosionOneShot = 1,
+
+    }
+
+    public void PlaySFX(SFXCategory sfx)
+    {
+        SFXAudioSource.PlayOneShot(sfxAudios[(int)sfx]);
     }
 
     internal void StopSFX()
