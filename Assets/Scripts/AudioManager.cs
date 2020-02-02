@@ -17,9 +17,9 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     public void PlayBGM(int levelIndex)
     {
-        levelIndex = levelIndex % levelBGMs.Count;
-        BGMAudioSource.clip = levelBGMs[levelIndex];
-        BGMAudioSource.Play();
+        //levelIndex = levelIndex % levelBGMs.Count;
+        //BGMAudioSource.clip = levelBGMs[levelIndex];
+        //BGMAudioSource.Play();
     }
 
     public void PlaySFX(int sfxIndex)

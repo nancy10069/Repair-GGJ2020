@@ -57,6 +57,9 @@ public class LevelManager : MonoBehaviour
                 }
             }
         }
+<<<<<<< HEAD
+        
+=======
         arms[0].score=new int[]{1,0,0,-1};
         arms[1].score=new int[]{1,1,-1,1};
         arms[2].score=new int[]{1,-1,-1,1};
@@ -69,6 +72,7 @@ public class LevelManager : MonoBehaviour
         legs[3].score=new int[]{1,0,1,-1};
         legs[4].score=new int[]{1,-1,-1,1};
 
+>>>>>>> cd30d1faec47223fe8bebfb9649ba73e16745a65
     }
 
     //在这里写个表？
@@ -121,10 +125,6 @@ public class LevelManager : MonoBehaviour
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
         endPage.SetActive(true);
     }
-    public void end(){
-        chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p => p.OnEndRun());
-        endPage.SetActive(true);
-    }
     void run()
     {
         chara.gameObject.GetComponentsInChildren<BodyPartBehaviour>().ToList().ForEach(p =>
@@ -132,7 +132,7 @@ public class LevelManager : MonoBehaviour
             //p.active = true;
             p.OnRun();
         });
-       // StartCoroutine(endding());
+        StartCoroutine(endding());
         chara.Play("Running");
         BodyComp head = heads[currBodyParts[0]];
         headAnm.Play(head.anmName);
@@ -211,7 +211,6 @@ public class LevelManager : MonoBehaviour
     public List<BodyComp> legs = new List<BodyComp>();
 
     // Update is called once per frame
-    
     void Update()
     {
 
