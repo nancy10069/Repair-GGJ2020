@@ -18,12 +18,17 @@ public class GameManager : MonoBehaviour
     }
     public GameObject replayBtn;
     int sum=0;
-    
+    public Text endText;
     public void end(){
         
 
         textholder.SetActive(true);
-        text.text = (sum>=3)?"win":"lose";
+        if (sum>=3)
+        endText.text = "Your customers are very satisfied ...\n"+
+        "The human repair project was a great success.\n"+"Congratulations!";
+        else
+        endText.text="Sometimes technology is not necessarily a panacea ...";
+       
         replayBtn.SetActive(true);
     }
     public void replay(){
