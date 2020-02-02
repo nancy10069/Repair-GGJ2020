@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicsInteractionInfo))]
 public abstract class ObjectReaction : MonoBehaviour
 {
-    
+
     protected Rigidbody2D rigidBody;
     protected virtual void Awake()
     {
@@ -19,5 +19,16 @@ public abstract class ObjectReaction : MonoBehaviour
     {
         ForceMode2D forceMode = isCountinuous ? ForceMode2D.Force : ForceMode2D.Impulse;
         return forceMode;
+    }
+    protected void StopShake()
+    {
+        Debug.Log("Remove Shaking");
+        Camera.main.gameObject.GetComponent<ScreenShake>().shakingAmounts -= 1;
+    }
+
+    protected void StartShake()
+    {
+        Camera.main.gameObject.GetComponent<ScreenShake>().shakingAmounts += 1;
+        Invoke("StopShake", 0.5f);
     }
 }

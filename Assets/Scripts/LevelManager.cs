@@ -77,7 +77,10 @@ public class LevelManager : MonoBehaviour
     public void nextLevel()
     {
         GameManager.instance.nextLevel();
-        Application.LoadLevel("Main" + GameManager.instance.level);
+        if (GameManager.instance.level < GameManager.maxLevel)
+            Application.LoadLevel("Main" + GameManager.instance.level);
+        else
+            Application.LoadLevel("EndScene");
         //GameManager.instance.nextLevel();
         //Application.LoadLevel("Main");
         //

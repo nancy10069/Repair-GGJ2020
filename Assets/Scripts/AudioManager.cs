@@ -24,8 +24,10 @@ public class AudioManager : MonoBehaviour
 
     public enum SFXCategory
     {
+        None = -1,
         VacuumCleanerLooping = 0,
         ExplosionOneShot = 1,
+        ChainsawLooping =2,
 
     }
 

@@ -10,13 +10,14 @@ public class DestroyReaction : ObjectReaction
 
     public override void CollisionEnterReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, Collision2D collision)
     {
-        if (actionType == InteractionAction.InteractionActionType.Destroy)
-        {
-            ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
-            AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
-            gameObject.SetActive(false);
-
-        }
+        //if (actionType == InteractionAction.InteractionActionType.Destroy)
+        //{
+        //    ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
+        //    AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
+        //    gameObject.SetActive(false);
+        //    StartShake();
+            
+        //}
     }
 
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinous)
@@ -26,9 +27,11 @@ public class DestroyReaction : ObjectReaction
             ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
             AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
             gameObject.SetActive(false);
-
+            StartShake();
         }
     }
+
+    
     protected override void Awake()
     {
         //destroyParticleEffect = Resources.Load<GameObject>("ExplosionResources/Explosionator");

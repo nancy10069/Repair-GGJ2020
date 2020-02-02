@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public const int maxLevel = 4;
     public int level
     {
         get
@@ -51,9 +52,9 @@ public class GameManager : MonoBehaviour
     public void nextLevel()
     {
         //        Debug.Log("?");
-        Debug.Log(level);
+        //Debug.Log(level);
         level = level + 1;
-        Debug.Log(level);
+        //Debug.Log(level);
         renderLevel();
     }
     void renderLevel()

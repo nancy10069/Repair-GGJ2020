@@ -47,6 +47,7 @@ public class SuckInReaction : ObjectReaction
         ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
         AudioManager.instance.PlaySFX(AudioManager.SFXCategory.ExplosionOneShot);
         gameObject.SetActive(false);
+        StartShake();
     }
 
     public override void TriggerReaction(BodyPartBehaviour from, InteractionAction.InteractionActionType actionType, string jsonParam, bool isCountinuous)

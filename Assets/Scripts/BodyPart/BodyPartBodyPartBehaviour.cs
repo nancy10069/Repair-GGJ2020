@@ -14,16 +14,16 @@ public class BodyPartBehaviour : MonoBehaviour
     protected virtual void Awake()
     {
         physicsInfo = GetComponent<PhysicsInteractionInfo>();
-        onRunAudioClipIndex = -1;
+        onRunAudioClipIndex = AudioManager.SFXCategory.None;
     }
 
-    int onRunAudioClipIndex;
+    AudioManager.SFXCategory onRunAudioClipIndex;
 
     public virtual void OnRun()
     {
         active = true;
-        if (onRunAudioClipIndex != -1)
-            AudioManager.instance.PlaySFX((AudioManager.SFXCategory)onRunAudioClipIndex);
+        if (onRunAudioClipIndex != AudioManager.SFXCategory.None)
+            AudioManager.instance.PlaySFX(onRunAudioClipIndex);
     }
 
     public virtual void OnEndRun()
@@ -59,7 +59,7 @@ public class BodyPartBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        onRunAudioClipIndex = -1;
+        onRunAudioClipIndex = AudioManager.SFXCategory.None;
         shouldIgnorePhysics = false;
         _active = false;
 
@@ -74,7 +74,11 @@ public class BodyPartBehaviour : MonoBehaviour
                 }
                 else if (targetAction.actionType == InteractionAction.InteractionActionType.SuckToMe)
                 {
-                    onRunAudioClipIndex = 0;
+                    onRunAudioClipIndex = AudioManager.SFXCategory.VacuumCleanerLooping;
+                }
+                else if (targetAction.actionType == InteractionAction.InteractionActionType.Destroy)
+                {
+                    onRunAudioClipIndex = AudioManager.SFXCategory.ChainsawLooping;
                 }
             }
         }
