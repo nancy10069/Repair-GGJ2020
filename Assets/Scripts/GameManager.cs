@@ -6,8 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public int level
     {
-        get;set;
+        get
+        {
+            return _level;
+        }
+        set
+        {
+            _level = value;
+        }
     }
+
+    [SerializeField]
+    private int _level;
     public static GameManager instance;
     // Start is called before the first frame update
     void Awake()
