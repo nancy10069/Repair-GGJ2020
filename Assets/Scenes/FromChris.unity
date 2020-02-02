@@ -190,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 2597347171060933694, guid: e71667b6088103e46903d64df49ef50b,
         type: 3}
       propertyPath: limbs.Array.size
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2597347171060933694, guid: e71667b6088103e46903d64df49ef50b,
         type: 3}

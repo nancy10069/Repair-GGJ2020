@@ -12,7 +12,7 @@ public class DestroyReaction : ObjectReaction
     {
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {
-            Instantiate(destroyParticleEffect, transform.position, Quaternion.identity);
+            ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
             gameObject.SetActive(false);
 
         }
@@ -22,10 +22,15 @@ public class DestroyReaction : ObjectReaction
     {
         if (actionType == InteractionAction.InteractionActionType.Destroy)
         {
-            Instantiate(destroyParticleEffect, transform.position, Quaternion.identity);
+            ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
             gameObject.SetActive(false);
 
         }
+    }
+    protected override void Awake()
+    {
+        destroyParticleEffect = Resources.Load<GameObject>("ExplosionResources/Explosionator");
+        base.Awake();
     }
 
     // Start is called before the first frame update

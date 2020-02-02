@@ -22,18 +22,21 @@ public class Explosionator : MonoBehaviour
 
         GameObject newLimbEmitter = Resources.Load<GameObject>("ExplosionResources/NewLimb");
         Material newLimbMat = Resources.Load<Material>("ExplosionResources/LimbMat");
-        for (int i = 0; i < partsList.Count; i++)
+        if (partsList != null)
         {
-            GameObject emitterGO = Instantiate(newLimbEmitter, this.transform);
-            emitterGO.transform.position = where;
-            limbParticleSystems.Add(emitterGO);
+            for (int i = 0; i < partsList.Count; i++)
+            {
+                GameObject emitterGO = Instantiate(newLimbEmitter, this.transform);
+                emitterGO.transform.position = where;
+                limbParticleSystems.Add(emitterGO);
 
-            Material instLimbMat = Instantiate<Material>(newLimbMat);
-            instLimbMat.SetTexture("_MainTex", partsList[i]);
+                Material instLimbMat = Instantiate<Material>(newLimbMat);
+                instLimbMat.SetTexture("_MainTex", partsList[i]);
 
-            ParticleSystem pS = emitterGO.GetComponent<ParticleSystem>();
-            pS.GetComponent<ParticleSystemRenderer>().material = instLimbMat;
-            pS.Emit(1);
+                ParticleSystem pS = emitterGO.GetComponent<ParticleSystem>();
+                pS.GetComponent<ParticleSystemRenderer>().material = instLimbMat;
+                pS.Emit(1);
+            }
         }
 
         Invoke("_Cleanup", 5);

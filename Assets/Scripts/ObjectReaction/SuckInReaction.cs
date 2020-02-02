@@ -33,16 +33,18 @@ public class SuckInReaction : ObjectReaction
 
     IEnumerator ZoomIn()
     {
-        float time = 2f;
+        float time = 0.5f;
         Vector3 startScale = transform.localScale;
         while (time > 0)
         {
             time -= Time.deltaTime;
-            float scale = Mathf.Lerp(transform.localScale.x, 0, (2f - time) / 2f);
+            float scale = Mathf.Lerp(startScale.x, 0, (0.5f - time) / 0.5f);
             transform.localScale = Vector3.one * scale;
             yield return null;
 
         }
+        //Instantiate(Resources.Load<GameObject>("ExplosionResources/Explosionator"), transform.position, Quaternion.identity);
+        ExplosionController.instance.MakeExplosion(transform.position, ExplosionSize.Small, null);
         gameObject.SetActive(false);
     }
 

@@ -5,10 +5,12 @@ using UnityEngine;
 public class ExplosionController : MonoBehaviour
 {
     GameObject explosionatorPrefab;
+    public static ExplosionController instance;
 
     private void Awake()
     {
         explosionatorPrefab = Resources.Load<GameObject>("ExplosionResources/Explosionator");
+        instance = this;
     }
 
     public void MakeExplosion(Vector3 where, ExplosionSize size, List<Texture> limbs)

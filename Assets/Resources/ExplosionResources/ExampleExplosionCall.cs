@@ -10,6 +10,13 @@ public class ExampleExplosionCall : MonoBehaviour
 
     public List<Texture> limbs;
 
+    public static ExampleExplosionCall instance;
+
+    private void Awake()
+    {
+        
+    }
+
     void Start()
     {
         explosionController = GameObject.Find("ExplosionController").GetComponent<ExplosionController>();
